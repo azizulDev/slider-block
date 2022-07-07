@@ -2,9 +2,9 @@
 import "./index.scss";
 
 // Registering a block
-wp.blocks.registerBlockType("yourplugins/your-block-name", {
-    title: "Your Block Name",
-    icon: "smiley",
+wp.blocks.registerBlockType("myplugins/slider-block-raju", {
+    title: "Slider Block Raju",
+    icon: "slides",
     attributes: {
       dummyName: {
         type: 'string', 
@@ -29,8 +29,7 @@ wp.blocks.registerBlockType("yourplugins/your-block-name", {
       )
     },
     save: function (props) {
-        // to make a truly dynamic block, we're handling front end by render_callback under index.php file
-        return null; 
+        return <h1>Hello from front end!</h1>
     }
 })
   
