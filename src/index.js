@@ -1,35 +1,31 @@
+import { InnerBlocks } from "@wordpress/block-editor"
+import { registerBlockType } from "@wordpress/blocks"
+
 // SCSS file import
 import "./index.scss";
 
 // Registering a block
-wp.blocks.registerBlockType("myplugins/slider-block-raju", {
+registerBlockType("myplugins/slider-block-raju", {
     title: "Slider Block Raju",
-    icon: "slides",
+    supports: {
+      align: ["full"]
+    },
     attributes: {
-      dummyName: {
-        type: 'string', 
-        default: 'Post Grid'
-      },
-      dummyAuthor: {
-          type: 'string',
-          default: 'author'
-      },
-      dummyVersion:{
-          type: 'string',
-          default: '2.1.20'
-      }
+      align: { type: "string", default: "full" }
     },
-    category: "common",
-    edit: function (props) {
-      props.setAttributes({dummyName: 'Raju'});
-      return (
-        <div className="my-custom-block">
-            <h1>Hello from Gutenberg Editor!!!</h1>
-        </div>
-      )
-    },
-    save: function (props) {
-        return <h1>Hello from front end!</h1>
-    }
-})
+    edit: EditComponent,
+    save: SaveComponent
+  })
   
+  function SaveComponent() {
+    return <InnerBlocks.Content />
+  }
+  
+  function EditComponent() {
+    return (
+      <div style={{ backgroundColor: "#333", padding: "35px" }}>
+        <p style={{ textAlign: "center", fontSize: "20px", color: "#FFF" }}>Slideshow</p>
+        <InnerBlocks />
+      </div>
+    )
+}
